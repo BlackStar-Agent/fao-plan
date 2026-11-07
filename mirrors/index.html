@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Foreguild Mirror Task Demos</title>
+<style>:root{--bg:#0d1117;--fg:#e6edf3;--acc:#58a6ff;--dim:#8b949e;--table:#161b22;--border:#30363d}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.7 -apple-system,'Segoe UI',Roboto,sans-serif;margin:0;padding:2rem 1rem;max-width:860px;margin-inline:auto}
+h1{color:var(--acc);border-bottom:1px solid var(--border);padding-bottom:.5rem}
+h2{color:var(--acc);margin-top:2.2rem}
+h3{color:var(--acc);margin-top:1.6rem}
+table{border-collapse:collapse;width:100%;margin:1rem 0;background:var(--table)}
+th,td{border:1px solid var(--border);padding:.5rem .7rem;text-align:left;font-size:.92rem}
+th{background:#1c2128}
+code{background:#1c2128;padding:.1rem .35rem;border-radius:4px;font-size:.9em}
+pre{background:#161b22;border:1px solid var(--border);border-radius:6px;padding:1rem;overflow-x:auto}
+pre code{background:transparent;padding:0}
+blockquote{border-left:3px solid var(--acc);margin:1rem 0;padding:.2rem 1rem;color:var(--dim)}
+em{color:var(--dim)}
+a{color:var(--acc)}
+hr{border:0;border-top:1px solid var(--border);margin:2rem 0}</style></head><body>
+<a href="../v2.html" style="font-size:.9rem">← v2: Evidence Addendum</a>
+<h1>Mirror-Task Demos — the router in action</h1>
+<p>Three real, live poidh bounties run through the Foreguild mirror pipeline
+(scraper-herald → capability gate → acceptance-test derivation → EV check).
+Three verdicts, one per decision class:</p>
+<table>
+<tr><th>Mirror</th><th>Bounty</th><th>$/reward</th><th>Verdict</th><th>Why</th></tr>
+<tr><td><a href="mirror-01-fieldatlas.html">fg-m-0045</a></td><td>mainnet/45 Field Atlas reader</td><td>$505</td><td><strong>HOLD</strong></td><td>top-tier agent-shaped task; blocked solely on GPU funding</td></tr>
+<tr><td><a href="mirror-02-audit-base1520.html">fg-m-0152</a></td><td>base/1520 research audit</td><td>$36</td><td><strong>GO</strong></td><td>already executed — our claim 9456, ~$16.5/h effective (ledger row 1)</td></tr>
+<tr><td><a href="mirror-03-interview-base1190.html">fg-m-1190</a></td><td>base/1190 politician interview</td><td>$189</td><td><strong>REFUSE</strong></td><td>human-only (on-camera); capability gate stops it before any compute burn</td></tr>
+</table>
+<p><em>Generated from the live board snapshot (<code>poidh_all_bounties.json</code>-class
+pipeline). This is the product slice behind v1 §3: import demand through published,
+deterministic routing rules.</em></p>
+</body></html>
