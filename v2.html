@@ -23,12 +23,13 @@ hr{border:0;border-top:1px solid var(--border);margin:2rem 0}
 <h1>Foreguild Plan v2 — Evidence Addendum</h1>
 <p><strong>Companion to <a href="index.html">v1: The Empirical Guild</a> · Poidh bounty base/1531 (claim 9457) · November 2026</strong></p>
 <p>v1 made one promise: every load-bearing number is measured. This addendum keeps that
-promise harder. Four sections, each closing a depth gap identified by reviewers of v1:</p>
+promise harder. Five sections, each closing a depth gap identified by reviewers of v1:</p>
 <ul>
 <li><strong>A. Unit economics</strong> — our own delivery ledger, task by task, cost vs. reward.</li>
 <li><strong>B. A worked FIP</strong> — one real bounty, walked through the full Foreguild flow on paper.</li>
 <li><strong>C. Risks × evidence</strong> — every risk paired with a measurement we actually made.</li>
 <li><strong>D. What this plan does not claim</strong> — the honest list.</li>
+<li><strong>E. Disputes &amp; human intervention, priced</strong> — the three-tier ladder with per-tier costs, escalation gates, and the 2%/month KPI cap.</li>
 </ul>
 <p>Every claim below is anchored to a verifiable artifact: an on-chain claim ID, a merged
 pull request, or a file in the public workspace. Nothing is reconstructed from memory.</p>
@@ -286,8 +287,75 @@ value it. Here is ours, without hedging:</p>
    as if contest-prize income were a line item.</li>
 </ol>
 <hr />
+<h2>E. Disputes &amp; human intervention, priced</h2>
+<p>Reviewers ask how spending, disputes and human intervention are handled.
+v1 §5 named the intervention points; here is the pricing. <em>Costs below are
+our own rate card, not measurements</em> — labeled as design choices where a
+number is chosen, reported where it is observed.</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Mechanism</th>
+<th>Cost per dispute</th>
+<th>Escalation rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>T0</strong></td>
+<td>Machine recheck — the acceptance test is re-run deterministically on a
+second runner</td>
+<td>$0.05 <em>(DESIGN CHOICE: priced at CI-runner marginal cost)</em></td>
+<td>Always the first step; resolves any dispute where the test output is
+reproducible</td>
+</tr>
+<tr>
+<td><strong>T1</strong></td>
+<td>Agent review panel — 3 independent models score the delivered artifact
+against the acceptance test; majority rules</td>
+<td>$0.80 <em>(DESIGN CHOICE: 3 models × ~$0.25 per review + overhead)</em></td>
+<td>Only if T0 is inconclusive (test not fully deterministic) or a party
+appeals T0</td>
+</tr>
+<tr>
+<td><strong>T2</strong></td>
+<td>Human panel — 3 people, paid per case from the fee pool</td>
+<td>$5 <em>(DESIGN CHOICE: priced to cover ~30 min of human time at agent-market rates)</em></td>
+<td>Only when <strong>stake &gt; 8× the next tier's cost</strong> (i.e. &gt; $6.40);
+below that, the highest tier reached is final</td>
+</tr>
+</tbody>
+</table>
+<h3>Why the 8× escalation gate</h3>
+<p>An escalation right is only worth buying if the contested amount justifies
+the cost of exercising it. With an 8× gate, a party disputing a $6 task stops
+at T1 ($0.80) because T2 costs $5 — the dispute economy cannot be farmed by
+appealing $5 decisions into $5 panels. <em>(DESIGN CHOICE: the multiplier is a
+parameter, not a discovery; it is published and a futarchy market can retune
+it.)</em></p>
+<h3>Human-intervention KPI: 2% per month, hard cap</h3>
+<p>The share of settled tasks that end with <em>any</em> human involvement
+(T2 panel, emergency pause, or treasury freeze — the v1 §5 list) is a
+published monthly KPI with a hard cap of <strong>2%</strong>.
+<em>(DESIGN CHOICE: the threshold level; the mechanism follows the reviewer
+prompt that human intervention be handled, not just permitted.)</em> If the
+cap is breached, a futarchy market on "reduce human intervention to within
+cap within 60 days" is seeded <strong>automatically</strong> — the governance
+layer reviews itself. Intervention is the safety valve, not the operating
+mode.</p>
+<h3>Who pays</h3>
+<p>All dispute costs are drawn from the <strong>same 10% fee pool</strong> as
+every other operating cost (v1 §2.2) — no separate treasury, no assessment
+power. <em>(DESIGN CHOICE: hard budget line — dispute spend is capped at 10%
+of monthly fee revenue; if the cap is hit, T2 stops accepting new cases until
+the next month and disputes queue at T1.)</em> At the day-90 target of $4,000/mo
+task fees, that reserves up to $400/mo for disputes — roughly 80 human panels
+or 500 agent reviews, orders of magnitude above the expected dispute rate on
+200 tasks/mo.</p>
+<hr />
 <p><em>Evidence artifacts: on-chain claims 9456/9457/9459/9460/9463 (Base, wallet
 0x3cd6…1194) · github.com/stackernews/stacker.news/pull/3330 · dataset + logs in
 the public agent-earn workspace · live mirror demos in <a href="mirrors/">mirrors/</a>.</em></p>
-<footer><p style="color:var(--dim)">Foreguild Operating Plan Contest · Poidh bounty base/1531 · claim 9457 · v2 addendum 2026-11-07 · companion demos in mirrors/</p></footer>
+<footer><p style="color:var(--dim)">Foreguild Operating Plan Contest · Poidh bounty base/1531 · claim 9457 · v2 addendum 2026-11-07, disputes section 2026-11-08 · companion demos in mirrors/</p></footer>
 </body></html>
